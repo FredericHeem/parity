@@ -319,7 +319,11 @@ pub fn password_from_file(path: String) -> Result<String, String> {
 	passwords.get(0).map(String::to_owned)
 		.ok_or_else(|| "Password file seems to be empty.".to_owned())
 }
-
+/// Read a list of password from password file.
+pub fn passwords_from_file(path: String) -> Result<Vec<String>, String> {
+	let passwords = passwords_from_files(&[path])?;
+	Ok(passwords)
+}
 /// Reads passwords from files. Treats each line as a separate password.
 pub fn passwords_from_files(files: &[String]) -> Result<Vec<String>, String> {
 	let passwords = files.iter().map(|filename| {
@@ -432,6 +436,16 @@ mod tests {
 		let mut file = File::create(path.as_path()).unwrap();
 		file.write_all(b"a bc ").unwrap();
 		assert_eq!(password_from_file(path.as_str().into()).unwrap().as_bytes(), b"a bc");
+	}
+	#[test]
+	fn test_passwords_from_file() {
+		let path = RandomTempPath::new();
+		let mut file = File::create(path.as_path()).unwrap();
+		file.write_all(b"password1\npassword2n").unwrap();
+		assert_eq!(passwords_from_file(path.as_str().into()).unwrap().as_bytes(), vec![
+				"password1".parse().unwrap(),
+				"password2".parse().unwrap(),
+			]);
 	}
 
 	#[test]

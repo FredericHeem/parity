@@ -1609,6 +1609,7 @@ dependencies = [
  "parity-updater 1.7.0",
  "path 0.1.0",
  "pretty_assertions 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rayon 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "rlp 0.2.0",
  "rpassword 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",

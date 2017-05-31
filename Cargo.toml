@@ -26,6 +26,7 @@ app_dirs = "1.1.1"
 futures = "0.1"
 fdlimit = "0.1"
 ws2_32-sys = "0.2"
+rayon = "0.6"
 ctrlc = { git = "https://github.com/paritytech/rust-ctrlc.git" }
 jsonrpc-core = { git = "https://github.com/paritytech/jsonrpc.git", branch = "parity-1.7" }
 ethsync = { path = "sync" }
